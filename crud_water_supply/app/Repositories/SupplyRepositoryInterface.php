@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-interface SuministroRepositoryInterface{
+interface SupplyRepositoryInterface{
     public function obtenerTodos();
     public function obtenerPorId($id);
     public function crear(array $datos);

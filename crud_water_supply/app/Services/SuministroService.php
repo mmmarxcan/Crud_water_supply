@@ -1,30 +1,30 @@
 <?php
 
-namespace App\Repositories;
-use App\Repositories\SuministroRepositoryInterface;
+namespace App\Services;
+use App\Repositories\SupplyRepositoryInterface;
 
 class SuministroService{
     protected $repository;
 
-    public function __construct(SuministroRepositoryInterface $repository){
+    public function __construct(SupplyRepositoryInterface $repository){
         $this->repository = $repository;
     }
     public function ObtenerTodosLosSuministros(){
         return $this->repository->obtenerTodos();
     }
-    public function CrearSuministro($data){
+    public function CrearSuministro(array $data){
         return $this->repository->crear($data);
     }
-    public function ObtenerSuministroPorId($id){
+    public function ObtenerSuministroPorId(int $id){
         return $this->repository->obtenerPorId($id);
     }
-    public function ActualizarSuministro($id, array $datos){
+    public function ActualizarSuministro(int $id, array $datos){
         return $this->repository->actualizar($id, $datos);
     }
-    public function EliminarSuministro($id){
+    public function EliminarSuministro(int $id){
         return $this->repository->eliminar($id);
     }
-    public function ActivarSuministro($id){
+    public function ActivarSuministro(int $id){
         return $this->repository->Activar($id);
     }
 }

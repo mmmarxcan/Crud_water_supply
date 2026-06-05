@@ -8,7 +8,8 @@ return new class extends Migration{
     public function up(): void{
         Schema::create('suministros', function (Blueprint $table){
             $table->id();
-            $table->foreignId('usuario_id')->constrained('usuarios');
+            $table->foreignId('usuario_id')->constrained('users');
+            $table->string('nombre_cliente')->nullable(false);
             $table->decimal('cantidad', 8,2);
             $table->string('estado')->default('pendiente'); // pendiente , entregado , cancelado
             $table->boolean('activo')->default(true); // agregamos esto para soft delete

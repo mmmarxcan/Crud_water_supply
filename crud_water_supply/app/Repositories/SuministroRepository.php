@@ -1,9 +1,10 @@
 <?php 
 
 namespace App\Repositories;
+use App\Repositories\SupplyRepositoryInterface;
 use App\Models\Suministro;
 
-class SuministroRepository implements SuministroRepositoryInterface{
+class SuministroRepository implements SupplyRepositoryInterface{
     public function obtenerTodos(){
         return Suministro::where('activo', true)->get();
     }
