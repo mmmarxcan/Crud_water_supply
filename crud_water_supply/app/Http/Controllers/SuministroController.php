@@ -13,6 +13,7 @@ class SuministroController extends Controller
     public function index()
     {
         //
+        return response()->json(Suministro::all(), 200);
     }
 
     /**
@@ -42,9 +43,16 @@ class SuministroController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        //
+    public function update(Request $request, $id){
+        $suministro = Suministro::findorFail($id);
+        $datos = $request->validate([
+            'cliente' => 'sometimes|string',
+            'cantidad' => 'sometimes|numeric',
+            'estado' => 'sometimes|string',
+            'activo' => 'sometimes|boolean'
+        ]);
+        $suministro->update($datos);
+        return response()->json($suministro, 200);
     }
 
     /**
@@ -53,5 +61,24 @@ class SuministroController extends Controller
     public function destroy(string $id)
     {
         //
+        $suministro = Suministro::findorFail($id);
+        $suministro->delete();
+        return response()->json([
+            'message' => 'Suministro eliminado exitosamente'
+        ], 200);
+    }
+
+    public function restore($id){
+        $suministro = Suministro::withTrashed()->findorFail($id);
+        if($suministro->trashed()){
+            $suministro->restore();
+            return response()->json([
+                'message' => 'Suministro restaurado exitosamente'
+            ], 200);
+        } else {
+            return response()->json([
+                'message' => 'El suministro no está eliminado'
+            ], 400);
+        }
     }
 }
