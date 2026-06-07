@@ -24,7 +24,7 @@ class SuministroController extends Controller
         $validatedData = $request->validate([
             'cliente' => 'required|string|max:255',
             'cantidad' => 'required|integer',
-            'estado' => 'requred|string'
+            'estado' => 'required|string'
         ]);
 
         return Suministro::create($validatedData);
@@ -41,9 +41,11 @@ class SuministroController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, int  $id)
     {
-        //
+        $suministro = Suministro::findOrFail($id);
+        $suministro->update($request->all());
+        return response()->json($suministro);
     }
 
     /**

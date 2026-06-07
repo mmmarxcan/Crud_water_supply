@@ -10,3 +10,4 @@ Route::get('/user', function (Request $request) {
 
 
 Route::apiResource('suministros', SuministroController::class);
+Route::delete('/suministros/{id}', [SuministroController::class, 'destroy']);
