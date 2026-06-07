@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('suministros', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
             $table->string('cliente');
-            $table->decimal('cantidad', 8 , 2);
-            $table->string('estado')->default('pendiente');
+            $table->integer('cantidad');
+            $table->string('estado');
             $table->boolean('activo')->default(true);
+            $table->softDeletes(); /// para el borrado lógico
             $table->timestamps();
         });
     }
