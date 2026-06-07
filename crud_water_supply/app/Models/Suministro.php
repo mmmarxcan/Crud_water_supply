@@ -6,11 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Suministro extends Model
 {
+    protected $table = 'suministros';
+
     protected $fillable = [
-        'usuario_id',
-        'nombre_cliente',
-        'litros',
+        'user_id',
+        'cliente',
+        'cantidad',
         'estado',
-        'activo' 
+        'activo'
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }
