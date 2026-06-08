@@ -11,26 +11,18 @@ class SuministroController extends Controller
 {
     protected $service;
 
-    /**
-     * Inyectamos el Servicio en el controlador por inyección de dependencias.
-     * Laravel se encarga de resolverlo automáticamente.
-     */
+
     public function __construct(SuministroService $service)
     {
         $this->service = $service;
     }
 
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         return $this->service->getAllSuministros();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StoreSuministroRequest $request)
     {
         // Delegamos la creación al servicio pasándole los datos ya validados
@@ -38,17 +30,12 @@ class SuministroController extends Controller
         return response()->json($suministro, 201); // 201 Created
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(string $id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(UpdateSuministroRequest $request, int $id)
     {
         // Delegamos la actualización al servicio pasándole el ID y los datos validados
@@ -56,9 +43,7 @@ class SuministroController extends Controller
         return response()->json($suministro);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(string $id)
     {
         // Delegamos la eliminación al servicio

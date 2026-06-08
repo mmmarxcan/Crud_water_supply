@@ -9,7 +9,7 @@ class StoreSuministroRequest extends FormRequest
 
     public function authorize(): bool
     {
-        return true; 
+        return true; // pasamos a true para asegurar que laravel no bloquee las peticiones  
     }
 
 
