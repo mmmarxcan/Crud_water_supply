@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react";
-import api from "./api/axios";
+import {
+  getSuministros,
+  createSuministro,
+  updateSuministro,
+  deleteSuministro,
+} from "./api/suministros";
 import "./App.css";
 
 function App() {
@@ -40,7 +45,8 @@ function App() {
   const fetchSuministros = async () => {
     setLoading(true);
     try {
-      const res = await api.get("/suministros");
+      // Mostrar los datos de suministros
+      const res = await getSuministros();
       setSuministros(res.data);
     } catch (err) {
       showToast("Error de conexión al cargar suministros", "error");
@@ -80,10 +86,12 @@ function App() {
 
     try {
       if (formData.id) {
-        await api.put(`/suministros/${formData.id}`, dataToSend);
+        // Editar los suministros
+        await updateSuministro(formData.id, dataToSend);
         showToast("Suministro actualizado correctamente", "success");
       } else {
-        await api.post("/suministros", dataToSend);
+        // Crear los suministros
+        await createSuministro(dataToSend);
         showToast("Suministro registrado correctamente", "success");
       }
 
@@ -99,7 +107,8 @@ function App() {
   const handleDelete = async (id) => {
     if (window.confirm("¿Está seguro de que desea eliminar este suministro?")) {
       try {
-        await api.delete(`/suministros/${id}`);
+        // eliminar suministros 
+        await deleteSuministro(id);
         showToast("Suministro eliminado correctamente", "warning");
         fetchSuministros();
       } catch (err) {
@@ -121,10 +130,7 @@ function App() {
 
   const handleComplete = async (s) => {
     try {
-      await api.put(`/suministros/${s.id}`, {
-        ...s,
-        estado: "completado",
-      });
+      await updateSuministro(s.id , { ...s, estado : "Completado"});
       showToast(`Suministro de ${s.cliente} completado`, "success");
       fetchSuministros();
     } catch (err) {
