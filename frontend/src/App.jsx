@@ -22,7 +22,7 @@ function App() {
     id: null,
     cliente: "",
     cantidad: "" ,
-    estado: "",
+    estado: "pendiente",
   });
 
   const [searchQuery, setSearchQuery] = useState("");
@@ -99,7 +99,8 @@ function App() {
       setIsModalOpen(false);
       fetchSuministros();
     } catch (err) {
-      showToast("Error al guardar suministro. Intente de nuevo.", "error");
+      const msg = err?.response?.data?.message || "Error al guardar Suministro. Intente de nuevo";
+      showToast(msg , "error");
       console.error(err);
     }
   };
@@ -130,7 +131,7 @@ function App() {
 
   const handleComplete = async (s) => {
     try {
-      await updateSuministro(s.id , { ...s, estado : "Completado"});
+      await updateSuministro(s.id , { ...s, estado : "completado"});
       showToast(`Suministro de ${s.cliente} completado`, "success");
       fetchSuministros();
     } catch (err) {
