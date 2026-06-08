@@ -40,7 +40,7 @@ class SuministroRepository
     }
 
     /**
-     * Elimina un suministro (borrado lógico por SoftDeletes).
+     * Elimina un suministro .
      */
     public function delete(Suministro $suministro): bool
     {
