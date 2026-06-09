@@ -7,7 +7,7 @@ use App\Models\Suministro;
 
 class SuministroService
 {
-    protected $repository;
+    protected SuministroRepository $repository;
 
     /**
      * Inyectamos el repositorio por inyección de dependencias de Laravel.

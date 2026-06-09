@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('direccion')->nullable();
             $table->string('email')->nullable();
             $table->boolean('activo')->default(true);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

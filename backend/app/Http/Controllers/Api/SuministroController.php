@@ -9,7 +9,7 @@ use App\Services\SuministroService;
 
 class SuministroController extends Controller
 {
-    protected $service;
+    protected SuministroService $service;
 
 
     public function __construct(SuministroService $service)
