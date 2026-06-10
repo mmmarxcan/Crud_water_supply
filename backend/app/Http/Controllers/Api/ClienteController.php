@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Http\Requests\StoreClienteRequest;
 use App\Http\Requests\UpdateClienteRequest;
 use App\Services\ClienteService;
@@ -27,7 +26,7 @@ class ClienteController extends Controller
         $cliente = $this->clienteService->updateCliente($id , $request->validated());
         return response()->json($cliente, 200);
     }
-    public function deleteCliente(int $id): JsonResponse {
+    public function destroy(int $id): JsonResponse {
         $this->clienteService->deleteCliente($id);
         return response()->json(['message' => 'Cliente eliminado correctamente'], 200);
     }
